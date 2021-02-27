@@ -1,0 +1,145 @@
+* {
+  font-family: Lato, sans-serif;
+}
+
+.header {
+  margin-bottom: 10px;
+  font-family: Poppins, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(0, 158, 127);
+}
+.subHeader {
+  margin-bottom: 30px;
+  font-family: Lato, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(119, 121, 140);
+  display: block;
+}
+.modalBody {
+  position: relative;
+  padding: 33px 53px;
+  text-align: center;
+}
+.modalForm {
+  width: 450px;
+  height: 510px;
+}
+@media (max-width: 768px) {
+  .modalBody {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .modalForm {
+    width: 450px;
+    height: 510px;
+  }
+}
+/*  input fields */
+.formcontainer input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 0px 18px;
+  appearance: none;
+  font-family: Lato, sans-serif;
+  font-size: 15px;
+  line-height: inherit;
+  border: 1px solid rgb(241, 241, 241);
+  border-radius: 6px;
+  color: rgb(13, 17, 54);
+  transition: all 0.25s ease 0s;
+  height: 48px;
+  background-color: rgb(247, 247, 247);
+  margin-bottom: 10px;
+}
+
+/* When the inputs get focus */
+.formcontainer input[type="text"]:focus {
+  border-color: rgb(0, 158, 127);
+  outline: none;
+}
+
+/*style for continue button */
+.formcontainer .btn {
+  background-color: rgb(0, 158, 127);
+  margin-bottom: 0;
+  color: white;
+}
+.btn {
+  width: 100%;
+  padding: 0px 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  border-radius: 6px;
+  appearance: none;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  font-family: inherit;
+  border: 0px;
+  color: rgb(255, 255, 255);
+  height: 48px;
+  margin-bottom: 10px;
+}
+.btn:focus {
+  outline: none;
+}
+.formcontainer .btn:hover {
+  opacity: 1;
+  background-color: rgb(0, 168, 130);
+}
+
+/*page.js*/
+
+.cardTitle {
+  font-family: Lato, sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: rgb(22, 31, 106);
+  padding: 0px 40px;
+  position: relative;
+}
+.cardHeader {
+  font-size: 21px;
+  font-weight: 700;
+  text-align: center;
+  color: rgb(22, 31, 106);
+}
+.table {
+  background-color: white;
+  text-align: center;
+}
+.orderDetails {
+  /* text-align: center; */
+  justify-content: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  width: auto;
+}
+.cusName {
+  margin-left: 15%;
+  margin-right: 15%;
+  width: auto;
+}
+.card {
+  margin: 20px;
+  padding: 30px 40px;
+}
+.tblHeader {
+  background-color: rgb(0, 158, 127);
+  color: white;
+  font-size: 19px;
+}
+
+@media (max-width: 1000px) {
+  .orderDetails {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+}

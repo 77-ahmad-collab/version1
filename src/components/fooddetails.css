@@ -1,0 +1,80 @@
+.foodnavbar
+{
+    background-color: white;
+    color: black;
+    text-align: left;
+    padding-top: 20px;
+    padding-left: 60px;
+    padding-right: 40px;
+    /* margin-bottom: 30%; */
+}
+.row1
+{
+    width: 100%;
+
+}
+.row2
+{
+    width: 100%;
+    position: sticky;
+    top: 14%;
+}
+.food1
+{
+    float: left;
+    width: 40%;
+}
+.foodaddress
+{
+  color: gray;
+  font-size: 14px;
+}
+.food2
+{
+    float: right;
+    width: 35%;
+    font-size: 13px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+.delivery_button
+{
+    color:#009E7F;
+    border:1px solid #009E7F;
+    background-color: white;
+    font: bold;
+    font-size: 13px;
+    margin-right: 12px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.heading
+{
+    text-align: center;
+    padding: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+.foodnavbar
+{
+    padding-top: 23px;
+    padding-left: 18px;
+    padding-right: 8px;
+}
+.food1
+{
+    width:100%;
+}
+.food2
+{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+}
+}
+

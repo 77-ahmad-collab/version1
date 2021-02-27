@@ -1,0 +1,50 @@
+.foodchoice
+{
+    position: sticky;
+    top: 14%;
+    background-color: rgb(255, 255, 255);
+    padding-top: 30px;
+    width: 100%;
+    padding-bottom: 50px;
+    box-shadow: 2px 3px 10px rgba(177, 174, 174, 0.74);
+}
+.foodchoice .links {
+    float: left;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content:space-around;
+    
+  }
+   .links li {
+    list-style: none;
+    text-align: left;
+  }
+   .links a {
+    display: block;
+    font-family: sans-serif;
+    text-align: left;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 500px;
+    color: rgb(110, 112, 112);
+    text-decoration: none;
+  }
+  @media screen and (max-width: 768px) {
+    .foodchoice
+{
+    position: sticky;
+    top: 14%;
+    padding-top: 30px;
+    margin-top: 30%;
+}
+    .foodchoice .links {
+        float: left;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content:space-between;
+        
+      }
+
+}

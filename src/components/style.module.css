@@ -1,0 +1,10 @@
+.imgfluid
+{
+height: 600px;
+}
+@media screen and (max-width: 768px) {
+    .imgfluid
+    {
+    height: 250px;
+    }
+}

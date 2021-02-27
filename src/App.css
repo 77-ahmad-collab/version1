@@ -1,0 +1,121 @@
+.App {
+  /* text-align: center; */
+  /* background-color: white; */
+  background: rgb(236, 232, 232);
+}
+.header {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  font-weight: bolder;
+  color: rgba(34, 33, 33, 0.705);
+  background-color: transparent;
+  font-family: cursive;
+}
+.featuredtrue {
+  position: absolute;
+  background-color: rgb(35, 168, 146);
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  left: 0%;
+  bottom: 85%;
+  font-weight: bold;
+  color: white;
+}
+.hello {
+  background-color: rgb(35, 168, 146);
+  color: white;
+  border: none;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+  border-radius: 30px;
+}
+#setstyle {
+  box-sizing: border-box;
+  float: right;
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+}
+.cardhead {
+  background-color: white;
+  border: none;
+  border-radius: 2%;
+  margin: 0 auto;
+  margin-left: 0%;
+  margin-top: 2%;
+  box-shadow: "20px 10px 30px black";
+}
+.cardhead:hover {
+  cursor: grab;
+}
+.cardhead:focus {
+  outline: none !important;
+}
+.background {
+  margin: 0 auto;
+  text-align: center;
+  background-color: transparent;
+}
+.card {
+  margin: 0 auto;
+  display: flex;
+  align-items: left;
+  border: none;
+  position: relative;
+  background-color: rgb(236, 232, 232);
+}
+.notify-badge {
+  position: absolute;
+  right: -20px;
+  top: 10px;
+  background: red;
+  text-align: center;
+  border-radius: 30px 30px 30px 30px;
+  color: white;
+  padding: 5px 10px;
+  font-size: 20px;
+}
+.cardimg {
+  border-radius: 2%;
+  width: 15rem;
+  height: 12rem;
+}
+.loadmore {
+  color: white;
+  border: none;
+  padding: 10px;
+  background-color: rgb(35, 168, 146);
+  font-weight: bold;
+  border-radius: 7px;
+}
+.loadmore:hover {
+  background-color: white;
+  color: rgb(35, 168, 146);
+  border: 2px solid rgb(35, 168, 146);
+}
+.input {
+  background-color: rgb(236, 232, 232);
+  color: purple;
+  font-size: larger;
+}
+.addprodContainer {
+  background-color: rgb(253, 250, 250);
+  text-align: left;
+  font-weight: bold;
+  padding: 20px;
+}
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+  #setstyle {
+    padding: 0%;
+
+    text-align: center;
+  }
+}
