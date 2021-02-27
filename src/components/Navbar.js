@@ -31,7 +31,7 @@ export default function Navbar() {
           <img src={logo} alt="logoimage" />
         </div>
         <ul class="links">
-          <li className="hiddennav">
+          {/* <li className="hiddennav">
             <a href="#home">Home</a>
           </li>
           <li className="hiddennav">
@@ -54,14 +54,14 @@ export default function Navbar() {
           </li>
           <li className="hiddennav">
             <a href="#home">Privacy Policy</a>
-          </li>
-
+          </li> */}
+          {/* 
           <li>
             <a href="#home">Offer</a>
           </li>
           <li>
             <a href="#about">❔ Need Help</a>
-          </li>
+          </li> */}
           <li>
             {/* <div class="lang-menu">
               <div class="selected-lang">English</div>
@@ -90,28 +90,81 @@ export default function Navbar() {
             </div> */}
           </li>
           <li>
-            <a
-              type="button"
-              href="#work"
-              style={{
-                backgroundColor: "#009E7F",
-                paddingTop: 10,
-                paddingLeft: 15,
-                paddingRight: 15,
-                paddingBottom: 10,
-                color: "white",
-                borderRadius: 5,
-              }}
-              onClick={() => {
-                localStorage.setItem("token", 401);
-                acessid(localStorage.getItem("token"));
-                console.log(localStorage.getItem("token"), "join ");
-                setModalShow(true);
-              }}
-            >
-              Join
-            </a>
+            {acess == 401 ? (
+              <a
+                type="button"
+                href="#work"
+                style={{
+                  backgroundColor: "#009E7F",
+                  paddingTop: 10,
+                  paddingLeft: 15,
+                  paddingRight: 15,
+                  paddingBottom: 10,
+                  color: "white",
+                  borderRadius: 5,
+                }}
+                onClick={() => {
+                  localStorage.setItem("token", 401);
+                  acessid(localStorage.getItem("token"));
+                  console.log(localStorage.getItem("token"), "join ");
+                  setModalShow(true);
+                }}
+              >
+                Join
+              </a>
+            ) : (
+              <NavLink to="/dashboard">
+                <a
+                  type="button"
+                  href="#work"
+                  style={{
+                    backgroundColor: "#009E7F",
+                    paddingTop: 10,
+                    paddingLeft: 15,
+                    paddingRight: 15,
+                    paddingBottom: 10,
+                    color: "white",
+                    borderRadius: 5,
+                  }}
+                  // onClick={() => {
+                  //   localStorage.setItem("token", 401);
+                  //   acessid(localStorage.getItem("token"));
+                  //   console.log(localStorage.getItem("token"), "join ");
+                  //   setModalShow(true);
+                  // }}
+                >
+                  Dashboard
+                </a>
+              </NavLink>
+            )}
           </li>
+          {acess == 401 ? (
+            ""
+          ) : (
+            <li>
+              <a
+                type="button"
+                href="#work"
+                style={{
+                  backgroundColor: "#009E7F",
+                  paddingTop: 10,
+                  paddingLeft: 15,
+                  paddingRight: 15,
+                  paddingBottom: 10,
+                  color: "white",
+                  borderRadius: 5,
+                }}
+                onClick={() => {
+                  localStorage.setItem("token", 401);
+                  acessid(localStorage.getItem("token"));
+                  console.log(localStorage.getItem("token"), "join ");
+                  // setModalShow(true);
+                }}
+              >
+                Logout
+              </a>
+            </li>
+          )}
           {/* <li>
             <a
               type="button"
