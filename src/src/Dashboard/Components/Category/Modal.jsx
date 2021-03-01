@@ -27,9 +27,11 @@ const Modal = ({ modal }) => {
   const handlesubmit = () => {
     // console.log("getting clciked");
     if (val) {
+      const id = localStorage.getItem("token");
+      console.log(id, "id in category modal post component");
       const ct_name = val;
       axios
-        .post("http://damp-headland-05751.herokuapp.com/category", {
+        .post(`http://damp-headland-05751.herokuapp.com/category/${id}`, {
           ct_name: ct_name,
         })
         .then((response) => {

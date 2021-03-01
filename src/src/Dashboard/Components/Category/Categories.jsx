@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Catstyles from "./Categories.module.css";
 import { connect, useDispatch } from "react-redux";
 import Homeazaz from "../../../Home.module.css";
@@ -12,10 +12,12 @@ import { Fetchcategorydata } from "../../../Apistore/Categoryapidata";
 // import { header } from "./style";
 import Loader from "./Loader";
 import MenuBar from "../../Navbar/MenuBar";
+// import { FoodDataContext } from "../../../../components/FoodData";
 import Sidebar from "../../Navbar/Sidebar";
-const Categories = ({ add, categorylist, myshowslider }) => {
+const Categories = ({ add, categorylist, myshowslider, loader }) => {
   const [value, setvalue] = useState("");
   const [modal, setmodal] = useState(true);
+  // const { loader } = useContext(FoodDataContext);
   const [categorydata, setcategorydata] = useState(categorylist);
   // const [listdata, setlistdata] = useState(Coupondata);
   const dispatch = useDispatch();
@@ -88,7 +90,9 @@ const Categories = ({ add, categorylist, myshowslider }) => {
               </tr>
             </thead>
             <tbody className="mt-0">
-              {categorylist.length !== 0 ? (
+              {loader ? (
+                <Loader />
+              ) : categorylist.length !== 0 ? (
                 filteritem.map((val, index) => {
                   const {
                     category_id,
@@ -103,7 +107,9 @@ const Categories = ({ add, categorylist, myshowslider }) => {
                   );
                 })
               ) : (
-                <Loader />
+                <h2 className="text-center text-success mt-4">
+                  No Category yet
+                </h2>
               )}
             </tbody>
           </table>
@@ -118,6 +124,7 @@ function mapStateToProps({ slider: { showslider }, fetchdata }) {
   return {
     myshowslider: showslider,
     categorylist: fetchdata.categorylist,
+    loader: fetchdata.loader,
   };
 }
 

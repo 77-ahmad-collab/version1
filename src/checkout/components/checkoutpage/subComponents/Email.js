@@ -4,19 +4,18 @@ import * as Rs from "react-bootstrap";
 import { FoodDataContext } from "../../../../components/FoodData";
 function CheckoutInfo(props) {
   const value = useContext(FoodDataContext);
-  const { contact } = value;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // const [address, setaddress] = useState("Enter your Delivery address Details");
   return (
     <div className="info">
       <Rs.Card className={`${styles.checkoutcard} shadow p-4 bg-white rounded`}>
-        {/**className={styles.checkout-card} */}
         <div>
           <span className={styles.cardtitle}>
             <Rs.Badge bsPrefix className={styles.numBadge}>
-              4
+              2
             </Rs.Badge>
             {props.title}
           </span>
@@ -25,7 +24,7 @@ function CheckoutInfo(props) {
             <button
               className={styles.openbutton}
               onClick={handleShow}
-              style={{ display: !props.btn && "none", float: "right" }}
+              // style={{ float: "right" }}
             >
               + {props.btn}
             </button>
@@ -33,15 +32,14 @@ function CheckoutInfo(props) {
         </div>
         <div className={styles.containerdeck}>
           <div className={styles.row}>
-            <div className={styles.radioGroup}>
-              <h2>{contact}</h2>
+            <div>
+              <h4>{value.emailid}</h4>
               {/* <label className={`${styles.column} ${styles.cardinput}`}>
                 <input
                   type="radio"
                   name="product"
                   className={styles.cardinputelement}
                 />
-
                 <div>
                   <div className={styles.contentcardheader}>Product A</div>
                   <div className={styles.contentcard}>
@@ -52,6 +50,7 @@ function CheckoutInfo(props) {
 
               {/* <label className={`${styles.column} ${styles.cardinput}`}>
                 <input
+                  // style={{ type: props.btn ? "radio" : "hidden" }}
                   type="radio"
                   name="product"
                   className={styles.cardinputelement}
@@ -85,7 +84,12 @@ function CheckoutInfo(props) {
           </div>
         </div>
       </Rs.Card>
-      <CenteredModal show={show} onhide={handleClose} modalTitle={props.btn} />
+      <CenteredModal
+        show={show}
+        onhide={handleClose}
+        modalTitle={props.btn}
+        // onsave={saveData}
+      />
     </div>
   );
 }
@@ -93,14 +97,14 @@ function CheckoutInfo(props) {
 export default CheckoutInfo;
 
 function CenteredModal(props) {
+  const [addinput, setaddinput] = useState("");
   const value = useContext(FoodDataContext);
-  const { getcontact } = value;
-  const [write, setwrite] = useState("");
-  const handlesubmit = () => {
-    if (write) {
-      getcontact(write);
-      props.onhide();
-      setwrite("");
+  const { email } = value;
+  const submited = () => {
+    props.onhide();
+    if (addinput) {
+      email(addinput);
+      setaddinput("");
     }
   };
   return (
@@ -109,22 +113,35 @@ function CenteredModal(props) {
         <Rs.Modal.Title>{props.modalTitle}</Rs.Modal.Title>
       </Rs.Modal.Header>
       <Rs.Modal.Body>
-        <form className={styles.formcontainer} autoComplete="off">
-          <input
+        <form
+          className={styles.formcontainer}
+          onSubmit={(e) => e.preventDefault()}
+        >
+          {/* <input
             type="text"
             id="fname"
             name="fname"
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-            required
-            placeholder="Enter Phone Number"
-            onChange={(e) => setwrite(e.target.value)}
-          />
-          <br />
+            placeholder="Enter Title"
+            value={props.address}
+            // onChange={(e) => props.setAddress(e.target.value)}
+          /> */}
+          <textarea
+            type="text"
+            id="lname"
+            name="lname"
+            // class="address"
+            placeholder="Enter Address"
+            value={addinput}
+            onChange={(e) => setaddinput(e.target.value)}
+          ></textarea>
+
           <button
             type="submit"
             className={`${styles.btn} button`}
-            onClick={handlesubmit}
+            onClick={submited}
           >
+            {" "}
+            {/**class="button" */}
             Save
           </button>
         </form>

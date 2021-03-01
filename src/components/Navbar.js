@@ -158,6 +158,9 @@ export default function Navbar() {
                   localStorage.setItem("token", 401);
                   acessid(localStorage.getItem("token"));
                   console.log(localStorage.getItem("token"), "join ");
+                  axios.post(
+                    "http://damp-headland-05751.herokuapp.com/user/logout"
+                  );
                   // setModalShow(true);
                 }}
               >
@@ -217,7 +220,7 @@ export default function Navbar() {
 }
 function LogIn(props) {
   const context = useContext(FoodDataContext);
-  const { acessid, acess } = context;
+  const { acessid, acess, fcartrerid, cartrerid } = context;
   const [toggle, settoggle] = useState(false);
   const [value, setvalue] = useState({
     email: "",
@@ -273,8 +276,11 @@ function LogIn(props) {
       const response = await axios(options)
         .then((response) => {
           console.log(response.data);
+          fcartrerid(response.data);
+          console.log(cartrerid, "i ma the cartere id");
           localStorage.setItem("token", response.data);
           acessid(response.data);
+
           console.log(localStorage.getItem("token"), "i am token");
           setTimeout(() => {
             localStorage.setItem("token", 401);
@@ -414,12 +420,19 @@ function LogIn(props) {
                 className={`${styles.btn} button`}
               >
                 <Link to="/dashboard">
-                  <p
+                  <h5
                     className="text-white d-flex justify-content-center align-items-center"
-                    style={{ textDecoration: "none", marginTop: "10px" }}
+                    style={{
+                      textDecoration: "none",
+                      // marginTop: "10px",
+                      // border: "2px solid red",
+                      height: "100%",
+                      marginRight: "20px",
+                      width: "100%",
+                    }}
                   >
                     Continue
-                  </p>
+                  </h5>
                 </Link>
               </button>
             </form>

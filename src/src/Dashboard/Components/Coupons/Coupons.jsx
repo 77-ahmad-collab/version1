@@ -11,7 +11,7 @@ import Loader from "../Orders/Loader";
 import { Fetchcoupondata } from "../../../Apistore/Couponsapidata";
 import MenuBar from "../../Navbar/MenuBar";
 import Sidebar from "../../Navbar/Sidebar";
-const Coupons = ({ add, coupondata }) => {
+const Coupons = ({ add, coupondata, loader }) => {
   // const [listdata, setlistdata] = useState(Coupondata);
   const [mycoupondata, setcoupondata] = useState(coupondata);
   const [value, setvalue] = useState("");
@@ -87,7 +87,11 @@ const Coupons = ({ add, coupondata }) => {
               </tr>
             </thead>
             <tbody>
-              {coupondata.length !== 0 ? (
+              {loader ? (
+                <div className={Orderstyles.loaderleft}>
+                  <Loader />
+                </div>
+              ) : coupondata.length !== 0 ? (
                 filteritem.map((val, index) => {
                   const {
                     coupon_id,
@@ -123,9 +127,9 @@ const Coupons = ({ add, coupondata }) => {
                   );
                 })
               ) : (
-                <div className={Orderstyles.loaderleft}>
-                  <Loader />
-                </div>
+                <h3 className="text-center text-success mt-4">
+                  You dont have any coupons yet
+                </h3>
               )}
             </tbody>
           </table>
@@ -140,6 +144,7 @@ function mapStateToProps({ slider: { showslider }, fetchdata }) {
   return {
     myshowslider: showslider,
     coupondata: fetchdata.couponlist,
+    loader: fetchdata.couploader,
   };
 }
 function mapDispatchToProps(dispatch) {

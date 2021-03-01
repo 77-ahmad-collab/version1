@@ -8,6 +8,10 @@ export const FoodDataProvider = (props) => {
   const [dateofdel, setdateofdel] = useState("");
   const [deltime, setdeltime] = useState("");
   const [log, setlog] = useState(false);
+  const [proceed, setproceed] = useState(false);
+  const proc = (val) => {
+    setproceed(val);
+  };
   const login = () => {
     setlog(true);
   };
@@ -161,6 +165,18 @@ export const FoodDataProvider = (props) => {
   const acessid = (val) => {
     setacess(val);
   };
+  const [cartrerid, setcatrerid] = useState(1);
+  const fcartrerid = (val) => {
+    setcatrerid(val);
+  };
+  const [loader, setloader] = useState(true);
+  const setloa = (val) => {
+    setloader(val);
+  };
+  const [emailid, setemailid] = useState("");
+  const email = (val) => {
+    setemailid(val);
+  };
   const value = {
     products: [foodproducts, setFoodProducts],
     cart: [cart, setCart],
@@ -188,6 +204,14 @@ export const FoodDataProvider = (props) => {
     catid: catid,
     acess: acess,
     acessid: acessid,
+    cartrerid: cartrerid,
+    fcartrerid: fcartrerid,
+    loader: loader,
+    setloa: setloa,
+    proceed: proceed,
+    proc: proc,
+    emailid: emailid,
+    email: email,
   };
 
   return (

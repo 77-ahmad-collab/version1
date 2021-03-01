@@ -10,7 +10,7 @@ import { Fetchcustomerdata } from "../../../Apistore/Customersapidata";
 import MenuBar from "../../Navbar/MenuBar";
 import Sidebar from "../../Navbar/Sidebar";
 import Sidebaritems from "../../Navbar/Sidebaritems";
-const Customers = ({ customerlist }) => {
+const Customers = ({ customerlist, loader }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Fetchcustomerdata());
@@ -73,7 +73,11 @@ const Customers = ({ customerlist }) => {
               </tr>
             </thead>
             <tbody>
-              {customerlist.length !== 0 ? (
+              {loader ? (
+                <div className={Orderstyles.loaderleft}>
+                  <Loader />
+                </div>
+              ) : customerlist.length !== 0 ? (
                 filteritem.map((val) => {
                   const {
                     customer_id,
@@ -95,9 +99,9 @@ const Customers = ({ customerlist }) => {
                   );
                 })
               ) : (
-                <div className={Orderstyles.loaderleft}>
-                  <Loader />
-                </div>
+                <h3 className="text-center text-success mt-4">
+                  No Customer yet
+                </h3>
               )}
             </tbody>
           </table>
@@ -107,6 +111,6 @@ const Customers = ({ customerlist }) => {
   );
 };
 function mapStateToProps({ fetchdata }) {
-  return { customerlist: fetchdata.customerlist };
+  return { customerlist: fetchdata.customerlist, loader: fetchdata.custloader };
 }
 export default connect(mapStateToProps)(Customers);

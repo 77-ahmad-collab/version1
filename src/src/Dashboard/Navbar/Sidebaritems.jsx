@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Sidestyleazaz from "./sidebar.module.css";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from "react-router-dom";
-
+import axios from "axios";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { IoBasketSharp } from "react-icons/io5";
 import { BiCube } from "react-icons/bi";
@@ -125,6 +125,11 @@ const Sidebaritems = ({ show }) => {
             localStorage.setItem("token", 401);
             console.log(localStorage.getItem("token"));
             acessid(localStorage.getItem("token"));
+            axios
+              .post("http://damp-headland-05751.herokuapp.com/user/logout")
+              .then((res) => {
+                console.log(res, "i am logout response");
+              });
           }}
           className={`${Sidestyleazaz.single_menuitemaaa} py-3 ${Sidestyleazaz.logout} pl-4  `}
           style={{ marginLeft: "20px" }}

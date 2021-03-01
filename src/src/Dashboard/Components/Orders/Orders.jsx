@@ -3,12 +3,13 @@ import Orderstyles from "./Order.module.css";
 import Catstyles from "../Category/Categories.module.css";
 import Data from "./Data";
 import Loader from "./Loader";
+import axios from "axios";
 import { connect, useDispatch } from "react-redux";
 import { Fetchorderdata } from "../../../Apistore/Orderapidata";
 import MenuBar from "../../Navbar/MenuBar";
 import Sidebar from "../../Navbar/Sidebar";
 import HOOO from "../../../Home.module.css";
-const Orders = ({ productlist, categorylist }) => {
+const Orders = ({ productlist, categorylist, loader }) => {
   const [mydata, setmydata] = useState(Data);
   const [productdata, setproductdata] = useState(productlist);
   const [value, setvalue] = useState("");
@@ -20,24 +21,28 @@ const Orders = ({ productlist, categorylist }) => {
   useEffect(() => {
     setproductdata(productlist);
   }, [productlist]);
+
   let filteritem = productdata.filter((contacts) => {
     return contacts.c_address.toLowerCase().indexOf(value.toLowerCase()) !== -1;
   });
   const [test, settest] = useState(0);
-  const handlechange = (e) => {
-    // console.log(e);
-    // const len = productdata.length;
-    // console.log(e.target.value, len);
-    // let com = 0;
-    // let pen = len;
-    // if (e.target.value === "complete") {
-    //   com += 1;
-    //   pen -= 1;
-    // } else if (e.target.value === "pending") {
-    //   pen += 1;
-    //   com -= 1;
-    // }
-    // console.log(pen, "com>=", com);
+
+  const handlechange = (orderid, catererid, e) => {
+    console.log(orderid, catererid, e);
+    if (e == "delivered") {
+      if (window.confirm("do you confirm")) {
+        axios.put(`http://damp-headland-05751.herokuapp.com/order/${orderid}`, {
+          status: e,
+          d_caterer_id: catererid,
+        });
+      }
+    } else {
+      axios.put(`http://damp-headland-05751.herokuapp.com/order/${orderid}`, {
+        status: e,
+        d_caterer_id: catererid,
+      });
+    }
+    //console.log(pen, "com>=", com);
   };
   // console.log(productdata, "i am orderdata");
   return (
@@ -101,9 +106,14 @@ const Orders = ({ productlist, categorylist }) => {
               </tr>
             </thead>
             <tbody>
-              {productlist.length !== 0 ? (
+              {loader ? (
+                <div className={Orderstyles.loaderleft}>
+                  <Loader />
+                </div>
+              ) : productlist.length !== 0 ? (
                 filteritem.map((val, index) => {
                   const {
+                    d_caterer_id,
                     order_id,
                     c_name,
                     c_address,
@@ -128,13 +138,23 @@ const Orders = ({ productlist, categorylist }) => {
                           <div class="form-group">
                             {/* <label for="sel1">Select list:</label> */}
                             <select
-                              onChange={() => handlechange(order_id)}
+                              onChange={(e) =>
+                                handlechange(
+                                  order_id,
+                                  d_caterer_id,
+                                  e.target.value
+                                )
+                              }
                               class="form-control"
                               id="sel1"
                               name="productcategory"
                             >
-                              <option value="pending">pending</option>
-                              <option value="complete">Complete</option>
+                              {order_status == "delivered" ? (
+                                ""
+                              ) : (
+                                <option value="pending">pending</option>
+                              )}
+                              <option value="delivered">Complete</option>
 
                               {/* {categorylist.map((val) => {
                                 const { ct_name } = val;
@@ -153,9 +173,7 @@ const Orders = ({ productlist, categorylist }) => {
                   );
                 })
               ) : (
-                <div className={Orderstyles.loaderleft}>
-                  <Loader />
-                </div>
+                <h3 className="text-center text-success mt-4">No orders yet</h3>
               )}
             </tbody>
           </table>
@@ -163,6 +181,9 @@ const Orders = ({ productlist, categorylist }) => {
         {/* <div className="table_order mb-5 ">
         <table className="table table_ord_sub ">
           <thead>
+          <div className={Orderstyles.loaderleft}>
+                  <Loader />
+                </div>
             <tr>
               <th scope="col">#</th>
               <th scope="col">First</th>
@@ -202,6 +223,7 @@ function mapStateToProps({ fetchdata }) {
   return {
     productlist: fetchdata.orderlist,
     categorylist: fetchdata.categorylist,
+    loader: fetchdata.orderloader,
   };
 }
 export default connect(mapStateToProps)(Orders);

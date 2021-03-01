@@ -7,15 +7,31 @@
 
   /* height: 100%; */
   position: fixed;
-  top: 16%;
-  height: 550px;
+  top: 13%;
+  height: 75%;
   /* border: 3px solid salmon; */
   left: 0%;
   display: flex;
   flex-direction: column;
   z-index: 2;
+  /* border: 2px solid peru; */
 }
+@media screen and (min-width: 1200px) {
+  .sidebar {
+    width: 22%;
 
+    /* height: 100%; */
+    position: fixed;
+    top: 13%;
+    height: 75%;
+    /* border: 3px solid salmon; */
+    left: 0%;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    /* border: 2px solid peru; */
+  }
+}
 .side_menuitemsaaa {
   display: flex;
 
@@ -24,7 +40,7 @@
   overflow-x: hidden;
   flex-direction: column;
   padding-left: 20px;
-  height: 55%;
+  height: 75%;
   font-weight: bold;
   margin-top: 30px;
 }

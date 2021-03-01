@@ -18,6 +18,8 @@ function CheckoutInfo(props) {
     date,
     total,
     deltime,
+    proc,
+    emailid,
   } = valuepart;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -31,7 +33,7 @@ function CheckoutInfo(props) {
   };
   const [proceedpay, setproceedpay] = useState(false);
   useEffect(() => {
-    if (time >= hour12 && myaddress && contact && payment) {
+    if (time >= hour12 && myaddress && contact && payment && emailid) {
       setproceedpay(true);
       console.log(time, myaddress, payment, contact);
       console.log("procedd is true");
@@ -40,7 +42,7 @@ function CheckoutInfo(props) {
       setproceedpay(false);
       console.log(time, myaddress, payment, contact, "in else");
     }
-  }, [myaddress, time, payment, contact]);
+  }, [myaddress, time, payment, contact, emailid]);
   const handleproceedbtn = () => {
     console.log(
       time,
@@ -51,6 +53,7 @@ function CheckoutInfo(props) {
       deltime,
       "Proceed btn"
     );
+    proc(true);
     axios.post("http://damp-headland-05751.herokuapp.com/order/place", {
       address: myaddress,
       time: deltime,
@@ -58,9 +61,10 @@ function CheckoutInfo(props) {
       paymentmethod: payment,
       amount: total,
       delivery_date: date,
+      email: emailid,
     });
     getcashmethod("");
-    getvalue("");
+    // getvalue("");
     getcontact("");
     gettime("");
   };
@@ -70,7 +74,7 @@ function CheckoutInfo(props) {
         <div>
           <span className={styles.cardtitle}>
             <Rs.Badge bsPrefix className={styles.numBadge}>
-              4
+              5
             </Rs.Badge>
             {props.title}
           </span>

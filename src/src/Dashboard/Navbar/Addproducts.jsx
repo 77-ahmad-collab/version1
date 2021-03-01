@@ -93,18 +93,23 @@ const Addproducts = ({ myshowslider, close, categorylist }) => {
     ) {
       setshow(false);
       setpro(!pro);
+      const id = localStorage.getItem("token");
+      console.log(id, "id in product post component");
       // setitem(value);
       // const pcat = value.productcategory.slice(-1);
       // console.log(pcat, "i am pcat");
       // const newcatname = value.productcategory.slice(0, -1);
-      axios.post("http://damp-headland-05751.herokuapp.com/products/add", {
-        p_name: value.productname,
-        p_description: value.productdesc,
-        ca_name: value.productcategory,
-        p_minamount: value.price,
-        salesprice: value.salesprice,
-        // category_id: pcat,
-      });
+      axios.post(
+        `http://damp-headland-05751.herokuapp.com/products/add/${id}`,
+        {
+          p_name: value.productname,
+          p_description: value.productdesc,
+          ca_name: value.productcategory,
+          p_minamount: value.price,
+          salesprice: value.salesprice,
+          // category_id: pcat,
+        }
+      );
       clearvalues();
       dispatch({ type: CLOSE_ADD });
     } else {

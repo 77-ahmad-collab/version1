@@ -21,7 +21,7 @@ import Apppop from "./deghjee-order-history/customer/popUpForm.js";
 
 const Section = () => {
   const value = useContext(FoodDataContext);
-  const { login, log, logout, acess, acessid } = value;
+  const { login, log, logout, acess, acessid, proceed } = value;
   // const [auth, setauth] = useState(localStorage.getItem("token"));
   console.log(acess, "i am authy");
   const [t, sett] = useState(false);
@@ -58,8 +58,10 @@ const Section = () => {
             <Route
               exact
               path="/fooddetails/appcheckout/done"
-              element={<Done />}
-            />
+              // element={<Done />}
+            >
+              {proceed ? <Done /> : <Appcheckout />}
+            </Route>
             {/* <Route path="/product/" element={<HomeCard/>}  /> */}
             {/* <Route path="/shop/skincare/:id" element={<DetailsPage/>}  />
                     <Route path="/cart" element={<Bucket/>}  />  */}

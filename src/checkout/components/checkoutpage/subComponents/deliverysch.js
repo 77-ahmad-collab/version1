@@ -205,7 +205,7 @@ function DeliverySchedule(props) {
       <div>
         <h5 className={styles.cardtitle}>
           <Rs.Badge bsPrefix className={styles.numBadge}>
-            2
+            3
           </Rs.Badge>
           Delivery Schedule
         </h5>

@@ -12,21 +12,41 @@ const initialstate = {
   productlist: [],
   orderlist: [],
   customerlist: [],
+  loader: true,
+  orderloader: true,
+  custloader: true,
+  couploader: true,
 };
 
 export default function reducer(state = initialstate, action) {
   switch (action.type) {
     case FETCHCOUPONSDATA:
       console.log("fetch reducer is working");
-      return { ...state, couponlist: action.payload };
+      return {
+        ...state,
+        couponlist: action.payload.data,
+        couploader: action.payload.load,
+      };
     case CATEGORYDATA:
-      return { ...state, categorylist: action.payload };
+      return {
+        ...state,
+        categorylist: action.payload.data,
+        loader: action.payload.show,
+      };
     case PRODUCTDATA:
       return { ...state, productlist: action.payload };
     case ORDERDATA:
-      return { ...state, orderlist: action.payload };
+      return {
+        ...state,
+        orderlist: action.payload.data,
+        orderloader: action.payload.load,
+      };
     case CUSTOMERDATA:
-      return { ...state, customerlist: action.payload };
+      return {
+        ...state,
+        customerlist: action.payload.data,
+        custloader: action.payload.load,
+      };
     case EDIT:
       const productlist = [...state.productlist];
 

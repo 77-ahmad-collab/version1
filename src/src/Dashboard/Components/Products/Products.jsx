@@ -261,7 +261,9 @@ const Products = ({ productdata, add }) => {
                       })
                     ) : (
                       <div>
-                        <h4>no dishes in the product</h4>
+                        <h4 className="text-center text-success mt-4">
+                          no dishes in the product
+                        </h4>
                       </div>
                     )}
                   </div>

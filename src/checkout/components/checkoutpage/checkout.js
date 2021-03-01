@@ -5,6 +5,7 @@ import CheckOutDetails from "./checkoutdetails";
 import AddressDetails from "./subComponents/addressDetails";
 import ContactDetails from "./subComponents/contactdetails";
 import DeliverySchedule from "./subComponents/deliverysch";
+import Email from "./subComponents/Email";
 import AddCard from "./subComponents/addCard";
 import { FoodDataContext } from "../../../components/FoodData";
 const CheckOut = () => {
@@ -26,7 +27,14 @@ const CheckOut = () => {
             PlaceHolderAddress="Enter Address"
             title="Delivery Address"
           />
-
+          <Email
+            btn="Add email"
+            PlaceHolderTitle="Enter Title"
+            value1="home"
+            value2="office"
+            PlaceHolderAddress="Enter Address"
+            title="Email id"
+          />
           {/* Delivery Schedule */}
           <DeliverySchedule />
 
@@ -49,10 +57,11 @@ const CheckOut = () => {
               <img src={cartBagImage} className={styles.cartBag} alt="error" />
 
               <div className={styles.productshowing}>
-                <h3 className="mt-3">YOUR ORDER</h3>
+                {/* <h4 className="mt-3">Your Order</h4> */}
                 {cart.length !== 0 ? (
                   cart.map((val) => {
                     const { fname, count, fprice } = val;
+                    // console.log(fprice * count);
                     return (
                       <div className={styles.productset}>
                         <div className={`p-2 ${styles.detailofproduct}`}>
